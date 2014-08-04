@@ -267,6 +267,19 @@ public class LessEngineTest {
 		outputFile.delete();
 	}
 
+	@Test
+	public void testCompileToOutputFileWithImport() throws Exception {
+		String expected = "" +
+				"a {" +
+				"  color: #dddddd;" +
+				"  background-image: url(img/logo.png);" +
+				"}";
+		File outputFile = new File("test.output.css");
+		engine.compile(new File(getResource("less/subdir/import-from-root.less").getPath()), outputFile, false);
+		assertEquals(expected, getContent(outputFile));
+		outputFile.delete();
+	}
+
 	private URL getResource(String path) {
 		return getClass().getClassLoader().getResource("META-INF/" + path);
 	}
