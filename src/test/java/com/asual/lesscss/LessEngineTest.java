@@ -249,6 +249,24 @@ public class LessEngineTest {
 		file.delete();
 	}
 
+	@Test
+	public void testCompileToOutputFile() throws Exception {
+		String expected = "" +
+				".box {" +
+				"  color: #fe33ac;" +
+				"  border-color: #fdcdea;" +
+				"}" +
+				".box div {" +
+				"  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);" +
+				"  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);" +
+				"  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);" +
+				"}";
+		File outputFile = new File("test.output.css");
+		engine.compile(new File(getResource("less/sample.less").getPath()), outputFile, false);
+		assertEquals(expected, getContent(outputFile));
+		outputFile.delete();
+	}
+
 	private URL getResource(String path) {
 		return getClass().getClassLoader().getResource("META-INF/" + path);
 	}
