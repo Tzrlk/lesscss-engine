@@ -26,7 +26,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.asual.lesscss.compiler.LessCompiler;
 import com.asual.lesscss.compiler.NashornCompiler;
-import com.asual.lesscss.compiler.RhinoCompiler;
+import com.asual.lesscss.compiler.DynjsCompiler;
 import com.asual.lesscss.loader.ChainedResourceLoader;
 import com.asual.lesscss.loader.ClasspathResourceLoader;
 import com.asual.lesscss.loader.CssProcessingResourceLoader;
@@ -84,7 +84,7 @@ public class LessEngine {
 		    double version = Double.parseDouble(Runtime.class.getPackage()
 		    		.getImplementationVersion().replaceFirst("^(\\d\\.\\d).*", "$1"));
 			if (version < 1.8) {
-				compiler = new RhinoCompiler(options, loader, less, env, engine, cssmin, sourceMap);				
+				compiler = new DynjsCompiler(options, loader, less, env, engine, cssmin, sourceMap);
 			} else {
 				compiler = new NashornCompiler(options, loader, less, env, engine, cssmin, sourceMap);
 			}
